@@ -25,9 +25,9 @@ class Sharepoint():
                  graphapi_secret_value,
                  site_name,
                  file_path,
+                 csv_path,
                  s3_bucket=None,
                  s3_key=None,
-                 csv_path='/tmp/output.csv',
                  **kwargs):
         self.debug = kwargs.get('debug', False)
 

@@ -11,7 +11,7 @@ import click
 @click.option('--file_path', required=True, help='File path all the way down to the desired file from top of Sharepoint folder.')
 @click.option('--s3_bucket', required=False, help='Bucket to place the extracted csv in.')
 @click.option('--s3_key', required=False, help='Key under the bucket, example: "staging/dept/table_name.csv')
-@click.option('--csv_path', required=False, help='Local path to save the extracted csv to - required if s3_bucket and s3_key are not provided.')
+@click.option('--csv_path', required=False, default='/tmp/output.csv', help='Local path to save the extracted csv to - required if s3_bucket and s3_key are not provided.')
 @click.option('--sheet_name', required=False, help='Name of specified sheet to extract as csv if the Sharepoint file is an xlsx workbook.')
 @click.option('--debug', required=False, is_flag=True)
 def sharepoint(ctx, **kwargs):
@@ -21,8 +21,11 @@ def sharepoint(ctx, **kwargs):
     if (kwargs.get('s3_bucket') and kwargs.get('s3_key') and kwargs.get('csv_path')):
         raise click.UsageError("--s3 and --csv_path cannot be used together.")
     ctx.obj = Sharepoint(**kwargs)
+    print(ctx.params.get("csv_path"))
 
 @sharepoint.command()
 @click.pass_context
 def extract(ctx):
+    print(ctx.params.get("csv_path"))
+
     ctx.obj.extract()
