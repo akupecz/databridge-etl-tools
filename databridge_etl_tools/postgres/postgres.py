@@ -45,7 +45,7 @@ class Postgres():
         self.s3_bucket = kwargs.get('s3_bucket', None)
         self.s3_key = kwargs.get('s3_key', None)
         self.local_csv_path = (
-            kwargs.get("local_csv_path", "/tmp/output.csv")
+            kwargs.get("local_csv_path")
             if self.s3_key is None and self.s3_bucket is None 
             else None
         )
