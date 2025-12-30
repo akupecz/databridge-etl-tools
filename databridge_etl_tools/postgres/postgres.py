@@ -49,6 +49,7 @@ class Postgres():
             if self.s3_key is None and self.s3_bucket is None 
             else None
         )
+        print(f"local_csv_path: {self.local_csv_path}")
         self.geom_field = kwargs.get('geom_field', None)
         self.geom_type = kwargs.get('geom_type', None)
         self.with_srid = kwargs.get('with_srid', None)
@@ -172,6 +173,7 @@ class Postgres():
         Simple wrapper method for retrieving csv locally or from s3
         '''
         if not self.local_csv_path:
+            print(f"From inside get_csv: localcsvpath = {self.local_csv_path}")
             self.get_csv_from_s3()
 
     def prepare_file(self, file:str, mapping_dict:dict=None, force2d=True, create_table:bool=False):
