@@ -137,14 +137,12 @@ class Sharepoint():
             print(f"File content of {self.file_path} obtained")
         self.write_to_csv(content)
         if self.debug:
-            print(f"Content written to temporary csv")
+            print(f"Content written to temporary csv at {self.csv_path}")
         
-        print(f"S3 Bucket is {self.s3_bucket} and s3 Key is {self.s3_key}")
         if self.s3_bucket and self.s3_key:
             self.load_to_s3()
-        if self.debug:
-            print(f"Content successfully loaded to {self.s3_bucket}/{self.s3_key}")
-            print("Extraction complete!")
+            if self.debug:
+                print(f"Content successfully loaded to {self.s3_bucket}/{self.s3_key}")
 
         # TODO: consider whether to use logger instead
         # if self.remaining.days < 30: 

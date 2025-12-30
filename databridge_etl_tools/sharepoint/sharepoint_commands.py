@@ -21,10 +21,8 @@ def sharepoint(ctx, **kwargs):
     if (kwargs.get('s3_bucket') and kwargs.get('s3_key') and kwargs.get('csv_path')):
         raise click.UsageError("--s3 and --csv_path cannot be used together.")
     ctx.obj = Sharepoint(**kwargs)
-    print("SP CSV Path is: " + ctx.params.get("csv_path"))
 
 @sharepoint.command()
 @click.pass_context
 def extract(ctx):
-
     ctx.obj.extract()

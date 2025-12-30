@@ -15,18 +15,17 @@ def vacuum_analyze(self):
     self.logger.info('Vacuum analyze complete.\n')
 
 def cleanup(self):
-    return
-    # '''Remove local CSV, temp CSV, JSON schema'''
-    # self.logger.info('Attempting to drop temp files...')
-    # for f in [self.csv_path, self.temp_csv_path, self.json_schema_path]:
-    #     if f is not None:
-    #         if os.path.isfile(f):
-    #             try:
-    #                 os.remove(f)
-    #                 self.logger.info(f'\tRemoved file {f}.')
-    #             except Exception as e:
-    #                 self.logger.info(f'Failed to remove file {f}.')
-    # print('\tRemoving temp files process completed.\n')
+    '''Remove local CSV, temp CSV, JSON schema'''
+    self.logger.info('Attempting to drop temp files...')
+    for f in [self.csv_path, self.temp_csv_path, self.json_schema_path]:
+        if f is not None:
+            if os.path.isfile(f):
+                try:
+                    os.remove(f)
+                    self.logger.info(f'\tRemoved file {f}.')
+                except Exception as e:
+                    self.logger.info(f'Failed to remove file {f}.')
+    print('\tRemoving temp files process completed.\n')
 
 def check_remove_nulls(self):
     '''
