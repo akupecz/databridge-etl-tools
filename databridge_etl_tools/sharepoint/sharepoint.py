@@ -138,6 +138,8 @@ class Sharepoint():
         self.write_to_csv(content)
         if self.debug:
             print(f"Content written to temporary csv")
+        
+        print(f"S3 Bucket is {self.s3_bucket} and s3 Key is {self.s3_key}")
         if self.s3_bucket and self.s3_key:
             self.load_to_s3()
         if self.debug:
